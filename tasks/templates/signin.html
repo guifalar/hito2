@@ -1,0 +1,31 @@
+
+{% extends 'base.html' %}
+<!-- Extender la plantilla base 'base.html' -->
+
+{% block content %}
+<!-- Definir un bloque llamado 'content' que se hereda de la plantilla base -->
+
+<h1>Logueo</h1>
+<!-- Encabezado principal de la página que indica la acción que se está realizando (inicio de sesión) -->
+
+{{ error }}
+<!-- Variable que muestra mensajes de error (si los hay) en la página -->
+
+<form action="/signin/" method="POST">
+    <!-- Formulario que envía los datos a la URL "/signin/" utilizando el método POST -->
+
+    {% csrf_token %}
+    <!-- Etiqueta de seguridad para prevenir ataques CSRF (Cross-Site Request Forgery) -->
+
+    {{ form.as_p }}
+    <!-- Renderizar el formulario de manera que los campos se muestren como párrafos -->
+
+    <button>
+        Loguear
+    </button>
+    <!-- Botón que permite al usuario enviar el formulario e iniciar sesión -->
+
+</form>
+
+{% endblock %}
+<!-- Final del bloque 'content' que indica el final del contenido específico de esta página -->

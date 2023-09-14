@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+<!-- Bloque que hereda de la plantilla base 'base.html' y define el contenido específico de esta página -->
+
+<h1>Crear Tareas</h1>
+<!-- Título de la página que indica la acción que se está realizando (crear tareas) -->
+
+{{ error }}
+<!-- Variable que muestra mensajes de error (si los hay) en la página -->
+
+<form action="/tasks/create/" method="POST">
+    <!-- Formulario que envía los datos a la URL "/tasks/create/" utilizando el método POST -->
+    
+    {% csrf_token %}
+    <!-- Etiqueta de seguridad para prevenir ataques CSRF (Cross-Site Request Forgery) -->
+
+    {{ form.as_p }}
+    <!-- Renderizar el formulario de manera que los campos se muestren como párrafos -->
+
+    <button>
+        Guardar
+    </button>
+    <!-- Botón que permite al usuario enviar el formulario y crear una nueva tarea -->
+
+</form>
+
+{% endblock %}
+<!-- Fin del bloque 'content' que indica el final del contenido específico de esta página -->

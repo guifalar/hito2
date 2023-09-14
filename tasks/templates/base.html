@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <title>Crud de Django</title>
+  <meta charset="utf8">
+  <!-- Agregar enlace a un archivo de hoja de estilos externo -->
+  <link rel="stylesheet" type="text/css" href="/static/css/styles.css">
+</head>
+<body>
+    <!-- Barra de navegación con estilos -->
+    <nav>
+        <ul class="nav-list">
+            <li class="nav-item">
+                <a class="nav-link" href="/">Home</a>
+            </li>
+            
+            <!-- Verificar si el usuario está autenticado -->
+            {% if user.is_authenticated %} 
+            <li class="nav-item">
+                <a class="nav-link" href="/tasks/create/">Crear Tareas</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/tasks">Tareas Pendientes</a>
+            </li>  
+            <li class="nav-item">
+                <a class="nav-link" href="/tasks_completed">Tareas Completadas</a>
+            </li>  
+            <li class="nav-item">
+                <a class="nav-link" href="/logout">Logout</a>
+            </li>
+            <!-- Si el usuario está autenticado, mostrar opciones de tareas y logout -->
+            {% else %}  
+            <li class="nav-item">
+                <a class="nav-link" href="/signup">Registro</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/signin">Logueo</a>
+            </li>
+            <!-- Si el usuario no está autenticado, mostrar opciones de registro e inicio de sesión -->
+            {% endif %}   
+        </ul>
+    </nav>
+
+    <!-- Contenido de la página con estilos -->
+    <div class="content">
+        {% block content %}
+        {%  endblock %}
+    </div>
+</body>
+</html>

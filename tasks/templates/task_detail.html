@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+<!-- Extender la plantilla base 'base.html' -->
+
+{% block content %}
+<!-- Definir un bloque llamado 'content' que se hereda de la plantilla base -->
+
+<h1>{{ task.title }}</h1>
+<!-- Encabezado principal de la página que muestra el título de la tarea -->
+
+{{ error }}
+<!-- Variable que muestra mensajes de error (si los hay) en la página -->
+
+<form method="POST">
+    <!-- Formulario para actualizar la tarea utilizando el método POST -->
+
+    {% csrf_token %}
+    <!-- Etiqueta de seguridad para prevenir ataques CSRF (Cross-Site Request Forgery) -->
+
+    {{ form.as_p }}
+    <!-- Renderizar el formulario de manera que los campos se muestren como párrafos -->
+
+    <button>
+        Actualizar
+    </button>
+    <!-- Botón que permite al usuario enviar el formulario y actualizar la tarea -->
+
+</form>
+
+<br>
+
+<form action="{% url 'complete_task' task.id %}" method="POST">
+    <!-- Formulario para marcar la tarea como completada utilizando el método POST y una URL dinámica -->
+
+    {% csrf_token %}
+    <!-- Etiqueta de seguridad para prevenir ataques CSRF (Cross-Site Request Forgery) -->
+
+    <button>
+        Completar
+    </button>
+    <!-- Botón que permite al usuario marcar la tarea como completada -->
+
+</form>
+
+<br>
+
+<form action="{% url 'delete_task' task.id %}" method="POST">
+    <!-- Formulario para eliminar la tarea utilizando el método POST y una URL dinámica -->
+
+    {% csrf_token %}
+    <!-- Etiqueta de seguridad para prevenir ataques CSRF (Cross-Site Request Forgery) -->
+
+    <button>
+        Eliminar
+    </button>
+    <!-- Botón que permite al usuario eliminar la tarea -->
+
+</form>
+
+{% endblock %}
+<!-- Final del bloque 'content' que indica el final del contenido específico de esta página -->

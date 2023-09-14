@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+<!-- Extender la plantilla base 'base.html' -->
+
+{% block content %}
+<!-- Definir un bloque llamado 'content' que se hereda de la plantilla base -->
+
+<h1>Tareas pendientes</h1>
+<!-- Encabezado principal de la página que indica la lista de tareas pendientes -->
+
+<ul>
+    <!-- Lista no ordenada para mostrar las tareas -->
+    
+    {% for task in tasks %}
+    <!-- Iterar a través de todas las tareas en la variable 'tasks' -->
+    
+        <a href="{% url 'task_detail' task.id %}">
+            <!-- Enlace a la página de detalle de la tarea utilizando una URL dinámica -->
+
+            <h1>{{ task.title }}</h1>
+            <!-- Título de la tarea -->
+           
+            <p>Fecha de creacion: {{ task.created }}</p>
+            <!-- Título de la tarea --> 
+
+            <p>Descripcion: {{ task.description }}</p>
+            <!-- Descripción de la tarea -->
+
+            <p>Usuario: {{ task.user.username }}</p>
+            <!-- Nombre de usuario del propietario de la tarea -->
+
+            <!--<p>{{ task.important }}</p>
+             Indicación de si la tarea es importante -->
+             <p>Prioridad:  
+                {% if task.important %}
+                  Importante
+                {% else %}
+                  No importante
+                {% endif %}</p>
+
+            <p>{{ task.datecompleted|date:'M j Y:i' }}</p>
+            <!-- Fecha de completado de la tarea formateada como "M j Y:i" (por ejemplo, "Jan 1 2022:00:00") -->
+
+        </a>
+        <!-- El enlace envuelve la información de cada tarea y lleva al usuario a la página de detalle de esa tarea -->
+    
+    {% endfor %}
+    <!-- Final del bucle de iteración -->
+</ul>
+<!-- Final de la lista de tareas -->
+
+{% endblock %}
+<!-- Final del bloque 'content' que indica el final del contenido específico de esta página -->
+
+
+
